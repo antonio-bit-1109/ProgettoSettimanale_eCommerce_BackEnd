@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 
 namespace ProgettoSettimanale_eCommerce
 {
@@ -31,7 +32,16 @@ namespace ProgettoSettimanale_eCommerce
                         if (int.TryParse(prezzoSedia, out int prezzoSediaInt))
                         {
 
-                            contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3'> <p>{Nomesedia}  </p> <p> {prezzoSediaInt}  </p> <p> {DescrizioneSedia}  </p>  </div> ";
+                            /*
+                             * 
+                            Button btnCancella = new Button();
+                            btnCancella.Text = "Cancella item";
+                            btnCancella.CssClass = "btn btn-outline-danger";
+                            btnCancella.Click += new EventHandler(BtnCancella_Click);
+
+                            */
+
+                            contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3 border border-1 m-2'> <p>{Nomesedia}  </p> <p> {prezzoSediaInt}  </p> <p> {DescrizioneSedia}  </p>  </div> ";
                             totaleOrdini += prezzoSediaInt;
                         }
 
@@ -47,7 +57,7 @@ namespace ProgettoSettimanale_eCommerce
 
                         if (int.TryParse(PrezzoBicchiere, out int PrezzoBicchiereInt))
                         {
-                            contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3'> <p>{NomeBicchiere}  </p> <p> {PrezzoBicchiereInt}  </p> <p> {DescrizioneBicchiere}  </p>  </div> ";
+                            contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3 border border-1 m-2'> <p>{NomeBicchiere}  </p> <p> {PrezzoBicchiereInt}  </p> <p> {DescrizioneBicchiere}  </p>  </div> ";
                             totaleOrdini += PrezzoBicchiereInt;
                         }
 
@@ -62,7 +72,7 @@ namespace ProgettoSettimanale_eCommerce
 
                         if (int.TryParse(prezzoScarpa, out int prezzoScarpaInt))
                         {
-                            contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3'> <p>{NomeScarpa}  </p> <p> {prezzoScarpaInt}  </p> <p> {DescrizioneScarpa}  </p>  </div> ";
+                            contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3 border border-1 m-2'> <p>{NomeScarpa}  </p> <p> {prezzoScarpaInt}  </p> <p> {DescrizioneScarpa}  </p>  </div> ";
                             totaleOrdini += prezzoScarpaInt;
                         }
 
@@ -91,7 +101,7 @@ namespace ProgettoSettimanale_eCommerce
 
                 }
 
-                contenitoreTotale.InnerHtml = $"<h3> Totale: {totaleOrdini} </h3>";
+                contenitoreTotale.InnerHtml = $"<h3> Totale: {totaleOrdini} Euro </h3>";
             }
 
         }
@@ -103,5 +113,16 @@ namespace ProgettoSettimanale_eCommerce
             Response.Redirect("Default.aspx");
         }
 
+
+        protected void BtnCancella_Click(object sender, EventArgs e)
+        {
+            if (Request.Cookies["CookieSedia"] != null)
+            {
+                HttpCookie myCookie = new HttpCookie("CookieSedia");
+                myCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(myCookie);
+            }
+
+        }
     }
 }
