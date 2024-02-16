@@ -4,6 +4,10 @@ namespace ProgettoSettimanale_eCommerce
 {
     public partial class DettagliProdotto : System.Web.UI.Page
     {
+
+        // return: void
+        // al pageload vene controllato se sono presenti i cookie relativi all immagine e al testo del singolo prodotto,
+        // se esistono vengono selezionati uno ad uno ed inseriti nell' html
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -27,6 +31,8 @@ namespace ProgettoSettimanale_eCommerce
             }
         }
 
+        // return: void
+        // ritorno alla pagina default 
         protected void torna_indietro(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx");

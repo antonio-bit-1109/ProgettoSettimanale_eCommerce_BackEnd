@@ -5,6 +5,11 @@ namespace ProgettoSettimanale_eCommerce
     public partial class Carrello : System.Web.UI.Page
     {
         int totaleOrdini = 0;
+
+        //return : void 
+        // una volta arrivato alla pagina del carrello, se non sono presenti cookie viene mostrato  nullaDaMostrare.InnerText = "Nessun prodotto nel carrello da mostrare!";
+        // se invece è presente almeno uno dei 4 cookie questo viene preso, letto e suddiviso nei suoi 3 valori stringa, il valore del prezzo viene convertito in intero ed inserito nell html.
+        // Allo stesso tempo una variabile globale totaleordini è inizializzata a zero al load della pagina. a questo valore viene aggiunto il prezzo dell'item parsato in int e mostrato a video.
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,17 +30,8 @@ namespace ProgettoSettimanale_eCommerce
 
                         if (int.TryParse(prezzoSedia, out int prezzoSediaInt))
                         {
-                            /*
-                             * 
-                            Button btnELimina = new Button();
-                            btnELimina.Text = "Elimina Ordine";
-                            btnELimina.Click += new EventHandler(BtnELimina_Click);
-
-                            */
-
 
                             contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3'> <p>{Nomesedia}  </p> <p> {prezzoSediaInt}  </p> <p> {DescrizioneSedia}  </p>  </div> ";
-                            // contenitore_Carrello.Controls.Add(btnELimina);
                             totaleOrdini += prezzoSediaInt;
                         }
 
@@ -100,11 +96,12 @@ namespace ProgettoSettimanale_eCommerce
 
         }
 
+
+        // reindirizzamento alla pagina principale
         protected void btn_tornaIndietro_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx");
         }
-
 
     }
 }

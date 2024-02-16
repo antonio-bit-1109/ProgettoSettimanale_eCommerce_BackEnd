@@ -8,10 +8,13 @@ namespace ProgettoSettimanale_eCommerce
 {
     public partial class _Default : Page
     {
+        /* return: void 
+         * descrizione: al caricamento della pagina vengono mostrati gli item creati a partire dalla classe prodotto, questi una volta creati
+         * vengono inseriti in una lista e passati al repeater per venir mappati attraverso Repeater1.DataBind();
+         */
         protected void Page_Load(object sender, EventArgs e)
         {
-            // se la pagina in precedenza non è stat ricaricata (non è stato fatto il postback) allora carica i prodotti disponibili
-            // viene generata una lista di prodotti disponibili e caricata nel Repeater
+
             if (!IsPostBack)
             {
                 List<Prodotto> ProdottiDisponibili = new List<Prodotto>();
@@ -48,6 +51,11 @@ namespace ProgettoSettimanale_eCommerce
             }
 
         }
+
+        // return: void 
+        // descrizione : al click del bottone visualizzaDettagli, viene preso il nome del prodotto relativo all'item selezionato grazie al command argument
+        // e confrontato con una stringa, se quel nome corrisponde ad una delle stringhe presenti entra nell relativo if e genera due cookie uno contenente
+        // le informazioni e l'altro contenente url dell 'immagine, inviate al client, infine avviene il redirect alla pagine dettagli.
 
         protected void Click_visualizzaDettagli(object sender, EventArgs e)
         {
@@ -111,6 +119,7 @@ namespace ProgettoSettimanale_eCommerce
             Response.Redirect("DettagliProdotto.aspx");
         }
 
+
         protected void VaiAlcarrello(object sender, EventArgs e)
         {
 
@@ -120,6 +129,9 @@ namespace ProgettoSettimanale_eCommerce
 
 
 
+        // return: void
+        // al click del bottone aggiungi al carrello viene preso il bottone ed il contenuto del relativo command argument ad esso associato. 
+        //se il cookie carrello non esiste viene creato e a seconda nei valori passati dal command argument viene creato il relativo cookie ed inviato al client.
         protected void AggiungiAlCarrello(object sender, EventArgs e)
         {
             Button Button2 = (Button)sender;
