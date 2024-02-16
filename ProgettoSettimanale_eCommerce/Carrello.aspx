@@ -38,8 +38,6 @@
         </div>
        
      
-      <asp:Panel ID="Panel1" runat="server" CssClass="d-flex flex-column"></asp:Panel>
-
     </form>
 </body>
 </html>
