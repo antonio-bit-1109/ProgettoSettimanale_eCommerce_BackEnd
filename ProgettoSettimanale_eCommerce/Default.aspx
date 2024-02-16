@@ -17,6 +17,7 @@
         <div class="row justify-content-center">
             <asp:Repeater ID="Repeater1" runat="server">
                 <ItemTemplate>
+
                     <div class="col-4 my-3 mx-2 border border-1 rounded-3 d-flex m-auto flex-column align-items-center">
                         <img class="w-50" src='<%# Eval("Immagine") %>' />
                         <h2 class="display-4">'<%# Eval("nomeProdotto") %>'</h2>
@@ -24,8 +25,8 @@
                         <p class=" fs-italic">'<%# Eval("descrizione") %>'</p>
                         <asp:Button CssClass="m-1 btn btn-outline-info" ID="Button1" runat="server" Text="visualizza dettagli" CommandArgument='<%# Eval("NomeProdotto") %>' OnClick="Click_visualizzaDettagli" />
                         <asp:Button CssClass="m-1 btn btn-outline-success"  ID="Button2" runat="server" Text="Aggiungi al carrello" CommandArgument='<%# Eval("nomeProdotto") + "," + Eval("prezzo") + "," + Eval("descrizione") %>' OnClick="AggiungiAlCarrello" />
-
                     </div>
+
                 </ItemTemplate>
             </asp:Repeater>
         </div>
