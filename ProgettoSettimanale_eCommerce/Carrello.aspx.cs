@@ -146,7 +146,12 @@ namespace ProgettoSettimanale_eCommerce
                 Response.Cookies.Add(cookie);
             }
 
-            totaleOrdini = 0;
+            totaleOrdini -= 1000;
+            if (totaleOrdini < 0)
+            {
+                totaleOrdini = 0;
+            }
+            Response.Redirect("Carrello.aspx");
         }
     }
 }
