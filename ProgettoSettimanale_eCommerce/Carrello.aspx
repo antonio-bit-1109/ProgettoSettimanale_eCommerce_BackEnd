@@ -16,6 +16,9 @@
                     <div class=" text-center">
                         <h1 class=" display-1">Carrello</h1>
                     </div>
+                    <div class=" text-center">                       
+                        <asp:Button  runat="server" ID="svuotaTuttoCarrello" OnClick="svuotaTuttoCarrello_Click" CssClass=" btn btn-outline-danger my-2" Text="svuota carrello"/>
+                    </div>
                 </div>
             </div>
 
@@ -27,17 +30,18 @@
             <div class="d-flex  justify-content-center">
                 <asp:Button ID="btn_tornaIndietro" runat="server" Text="torna indietro" OnClick="btn_tornaIndietro_Click" />
             </div>
+
+
             <div class="d-flex flex-column" runat="server" id="contenitore_Carrello">
             </div>
+
         </div>
 
         <div class="row">
             <h2 runat="server" id="contenitoreTotale">
 
             </h2>
-        </div>
-       
-     
+        </div>       
     </form>
 </body>
 </html>

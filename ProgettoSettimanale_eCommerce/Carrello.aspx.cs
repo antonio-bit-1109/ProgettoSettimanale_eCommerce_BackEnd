@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 
 namespace ProgettoSettimanale_eCommerce
@@ -21,6 +22,7 @@ namespace ProgettoSettimanale_eCommerce
                 if (Request.Cookies["CookieSedia"] != null || Request.Cookies["CookieBicchiere"] != null ||
                     Request.Cookies["CookieScarpa"] != null || Request.Cookies["CookieSlittino"] != null)
                 {
+                    List<string> ListaCookie = new List<string>();
 
                     if (Request.Cookies["CookieSedia"] != null)
                     {
@@ -31,21 +33,14 @@ namespace ProgettoSettimanale_eCommerce
 
                         if (int.TryParse(prezzoSedia, out int prezzoSediaInt))
                         {
-
-                            /*
-                             * 
-                            Button btnCancella = new Button();
-                            btnCancella.Text = "Cancella item";
-                            btnCancella.CssClass = "btn btn-outline-danger";
-                            btnCancella.Click += new EventHandler(BtnCancella_Click);
-
-                            */
-
-                            contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3 border border-1 m-2'> <p>{Nomesedia}  </p> <p> {prezzoSediaInt}  </p> <p> {DescrizioneSedia}  </p>  </div> ";
+                            // contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3 border border-1 m-2'> <p>{Nomesedia}  </p> <p> {prezzoSediaInt}  </p> <p> {DescrizioneSedia}  </p> </div> ";
                             totaleOrdini += prezzoSediaInt;
                         }
 
-
+                        ListaCookie.Add(Nomesedia);
+                        ListaCookie.Add(prezzoSedia);
+                        ListaCookie.Add(DescrizioneSedia);
+                        contenitore_Carrello.InnerHtml = string.Join(" ", ListaCookie);
                     }
 
                     if (Request.Cookies["CookieBicchiere"] != null)
@@ -85,11 +80,16 @@ namespace ProgettoSettimanale_eCommerce
                         string PrezzoSlittino = Request.Cookies["CookieSlittino"].Value.Split(',')[1];
                         string DescrizioneSlittino = Request.Cookies["CookieSlittino"].Value.Split(',')[2];
 
+
+
                         if (int.TryParse(PrezzoSlittino, out int PrezzoSlittinoInt))
                         {
-                            contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3 border border-1 m-2'> <p>{NomeSlittino}  </p> <p> {PrezzoSlittinoInt}  </p> <p> {DescrizioneSlittino}  </p>  </div> ";
+
+                            contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3 border border-1 m-2'> <p>{NomeSlittino}  </p> <p> {PrezzoSlittinoInt} </p> <p> {DescrizioneSlittino}  </p>  </div> ";
                             totaleOrdini += PrezzoSlittinoInt;
                         }
+
+
 
                     }
 
@@ -98,6 +98,7 @@ namespace ProgettoSettimanale_eCommerce
                 {
                     nullaDaMostrare.Visible = true;
                     nullaDaMostrare.InnerText = "Nessun prodotto nel carrello da mostrare!";
+                    svuotaTuttoCarrello.Visible = false;
 
                 }
 
@@ -113,16 +114,39 @@ namespace ProgettoSettimanale_eCommerce
             Response.Redirect("Default.aspx");
         }
 
-
-        protected void BtnCancella_Click(object sender, EventArgs e)
+        protected void svuotaTuttoCarrello_Click(object sender, EventArgs e)
         {
+            contenitore_Carrello.InnerHtml = "";
+
             if (Request.Cookies["CookieSedia"] != null)
             {
-                HttpCookie myCookie = new HttpCookie("CookieSedia");
-                myCookie.Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies.Add(myCookie);
+                HttpCookie cookie = new HttpCookie("CookieSedia");
+                cookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(cookie);
             }
 
+            if (Request.Cookies["CookieSlittino"] != null)
+            {
+                HttpCookie cookie = new HttpCookie("CookieSlittino");
+                cookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(cookie);
+            }
+
+            if (Request.Cookies["CookieScarpa"] != null)
+            {
+                HttpCookie cookie = new HttpCookie("CookieScarpa");
+                cookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(cookie);
+            }
+
+            if (Request.Cookies["CookieBicchiere"] != null)
+            {
+                HttpCookie cookie = new HttpCookie("CookieBicchiere");
+                cookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(cookie);
+            }
+
+            totaleOrdini = 0;
         }
     }
 }
