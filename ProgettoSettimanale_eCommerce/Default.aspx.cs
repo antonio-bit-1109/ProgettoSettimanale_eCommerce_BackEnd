@@ -6,8 +6,10 @@ using System.Web.UI.WebControls;
 
 namespace ProgettoSettimanale_eCommerce
 {
+
     public partial class _Default : Page
     {
+
         /* return: void 
          * descrizione: al caricamento della pagina vengono mostrati gli item creati a partire dalla classe prodotto, questi una volta creati
          * vengono inseriti in una lista e passati al repeater per venir mappati attraverso Repeater1.DataBind();
@@ -17,6 +19,7 @@ namespace ProgettoSettimanale_eCommerce
 
             if (!IsPostBack)
             {
+                messAddToCart.Visible = false;
                 List<Prodotto> ProdottiDisponibili = new List<Prodotto>();
 
                 Prodotto sedia = new Prodotto("https://www.arredasi.it/10771-large_default/sedia-legno-cucina-fresia-110-2.jpg", "Sedia", 50, "Sedia in legno");
@@ -137,6 +140,8 @@ namespace ProgettoSettimanale_eCommerce
             Button Button2 = (Button)sender;
             string Dettagliprodotto = Button2.CommandArgument;
 
+            messAddToCart.Visible = true;
+
             if (Request.Cookies["carrello"] == null)
             {
                 if (Dettagliprodotto.Contains("Sedia"))
@@ -176,6 +181,7 @@ namespace ProgettoSettimanale_eCommerce
                 }
 
             }
+
 
         }
     }

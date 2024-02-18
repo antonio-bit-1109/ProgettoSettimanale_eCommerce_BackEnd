@@ -10,17 +10,15 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        
-            <div class="row">
-                <div class=" col-12">
-                    <div class=" text-center">
-                        <h1 class=" display-1">Carrello</h1>
-                    </div>
-                    <div class=" text-center">                       
-                        <asp:Button  runat="server" ID="svuotaTuttoCarrello" OnClick="svuotaTuttoCarrello_Click" CssClass=" btn btn-outline-danger my-2" Text="svuota carrello"/>
-                    </div>
+
+        <div class="row">
+            <div class=" col-12">
+                <div class=" text-center">
+                    <h1 class=" display-1">Carrello</h1>
                 </div>
+
             </div>
+        </div>
 
         <div class="row">
             <div class="d-flex justify-content-center">
@@ -38,10 +36,18 @@
         </div>
 
         <div class="row">
-            <h2 runat="server" id="contenitoreTotale">
-
-            </h2>
-        </div>       
+            <h2 runat="server" id="contenitoreTotale"></h2>
+        </div>
+        <div class=" text-center">
+            <asp:Button runat="server" ID="svuotaTuttoCarrello" OnClick="svuotaTuttoCarrello_Click" CssClass=" btn btn-outline-danger my-2" Text="svuota carrello" />
+        </div>
     </form>
+    <script>
+        const cancellaCookie = (nomeCookie) => {
+            document.cookie = nomeCookie + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            location.reload(); // Ricarica la pagina per aggiornare il contenuto del carrello
+        }
+</script>
+
 </body>
 </html>

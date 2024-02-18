@@ -24,6 +24,15 @@ namespace ProgettoSettimanale_eCommerce
         protected global::System.Web.UI.WebControls.Button Button3;
 
         /// <summary>
+        /// Controllo messAddToCart.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl messAddToCart;
+
+        /// <summary>
         /// Controllo Repeater1.
         /// </summary>
         /// <remarks>

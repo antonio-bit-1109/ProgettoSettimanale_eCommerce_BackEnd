@@ -22,7 +22,7 @@ namespace ProgettoSettimanale_eCommerce
                 if (Request.Cookies["CookieSedia"] != null || Request.Cookies["CookieBicchiere"] != null ||
                     Request.Cookies["CookieScarpa"] != null || Request.Cookies["CookieSlittino"] != null)
                 {
-                    List<string> ListaCookie = new List<string>();
+
 
                     if (Request.Cookies["CookieSedia"] != null)
                     {
@@ -36,11 +36,12 @@ namespace ProgettoSettimanale_eCommerce
                             // contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3 border border-1 m-2'> <p>{Nomesedia}  </p> <p> {prezzoSediaInt}  </p> <p> {DescrizioneSedia}  </p> </div> ";
                             totaleOrdini += prezzoSediaInt;
                         }
-
-                        ListaCookie.Add(Nomesedia);
-                        ListaCookie.Add(prezzoSedia);
-                        ListaCookie.Add(DescrizioneSedia);
-                        contenitore_Carrello.InnerHtml = string.Join(" ", ListaCookie);
+                        List<string> ListaCookieSedia = new List<string>();
+                        ListaCookieSedia.Add(Nomesedia);
+                        ListaCookieSedia.Add(prezzoSedia);
+                        ListaCookieSedia.Add(DescrizioneSedia);
+                        string divContent = string.Join(" ", ListaCookieSedia);
+                        contenitore_Carrello.InnerHtml += $"<div class='border border-1 p-2 m-3'> {divContent}  <button onclick='cancellaCookie(\"CookieSedia\")' class='btn btn-warning CookieSedia'> Cancella ordine </button> </div>";
                     }
 
                     if (Request.Cookies["CookieBicchiere"] != null)
@@ -52,10 +53,15 @@ namespace ProgettoSettimanale_eCommerce
 
                         if (int.TryParse(PrezzoBicchiere, out int PrezzoBicchiereInt))
                         {
-                            contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3 border border-1 m-2'> <p>{NomeBicchiere}  </p> <p> {PrezzoBicchiereInt}  </p> <p> {DescrizioneBicchiere}  </p>  </div> ";
+                            //contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3 border border-1 m-2'> <p>{NomeBicchiere}  </p> <p> {PrezzoBicchiereInt}  </p> <p> {DescrizioneBicchiere}  </p>  </div> ";
                             totaleOrdini += PrezzoBicchiereInt;
                         }
-
+                        List<string> ListaCookieBicchiere = new List<string>();
+                        ListaCookieBicchiere.Add(NomeBicchiere);
+                        ListaCookieBicchiere.Add(PrezzoBicchiere);
+                        ListaCookieBicchiere.Add(DescrizioneBicchiere);
+                        string divContent = string.Join(" ", ListaCookieBicchiere);
+                        contenitore_Carrello.InnerHtml += $"<div class='border border-1 p-2 m-3'> {divContent}  <button onclick='cancellaCookie(\"CookieBicchiere\")' class='btn btn-warning '> Cancella ordine </button> </div>";
                     }
 
                     if (Request.Cookies["CookieScarpa"] != null)
@@ -67,10 +73,15 @@ namespace ProgettoSettimanale_eCommerce
 
                         if (int.TryParse(prezzoScarpa, out int prezzoScarpaInt))
                         {
-                            contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3 border border-1 m-2'> <p>{NomeScarpa}  </p> <p> {prezzoScarpaInt}  </p> <p> {DescrizioneScarpa}  </p>  </div> ";
+                            // contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3 border border-1 m-2'> <p>{NomeScarpa}  </p> <p> {prezzoScarpaInt}  </p> <p> {DescrizioneScarpa}  </p>  </div> ";
                             totaleOrdini += prezzoScarpaInt;
                         }
-
+                        List<string> ListaCookieScarpa = new List<string>();
+                        ListaCookieScarpa.Add(NomeScarpa);
+                        ListaCookieScarpa.Add(prezzoScarpa);
+                        ListaCookieScarpa.Add(DescrizioneScarpa);
+                        string divContent = string.Join(" ", ListaCookieScarpa);
+                        contenitore_Carrello.InnerHtml += $"<div class='border p-2 border-1 m-3'> {divContent}  <button onclick='cancellaCookie(\"CookieScarpa\")' class='btn btn-warning '> Cancella ordine </button> </div>";
                     }
 
                     if (Request.Cookies["CookieSlittino"] != null)
@@ -85,12 +96,15 @@ namespace ProgettoSettimanale_eCommerce
                         if (int.TryParse(PrezzoSlittino, out int PrezzoSlittinoInt))
                         {
 
-                            contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3 border border-1 m-2'> <p>{NomeSlittino}  </p> <p> {PrezzoSlittinoInt} </p> <p> {DescrizioneSlittino}  </p>  </div> ";
+                            // contenitore_Carrello.InnerHtml += $" <div class='d-flex gap-3 border border-1 m-2'> <p>{NomeSlittino}  </p> <p> {PrezzoSlittinoInt} </p> <p> {DescrizioneSlittino}  </p>  </div> ";
                             totaleOrdini += PrezzoSlittinoInt;
                         }
-
-
-
+                        List<string> ListaCookieSlittino = new List<string>();
+                        ListaCookieSlittino.Add(NomeSlittino);
+                        ListaCookieSlittino.Add(PrezzoSlittino);
+                        ListaCookieSlittino.Add(DescrizioneSlittino);
+                        string divContent = string.Join(" ", ListaCookieSlittino);
+                        contenitore_Carrello.InnerHtml += $"<div class='border border-1 p-2 m-3'> {divContent}  <button  onclick='cancellaCookie(\"CookieSlittino\")' class='btn btn-warning CookieSlittino'> Cancella ordine </button> </div>";
                     }
 
                 }
